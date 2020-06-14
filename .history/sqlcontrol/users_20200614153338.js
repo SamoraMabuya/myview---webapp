@@ -2,15 +2,7 @@ const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const bcryptjs = require('bcryptjs');
 const passport = require('passport');
-const passportJWT = require ('passport-jwt');
-
-let ExtractJwt = passportJWT.ExtractJwt;
-
-let JwtStrategy = passportJWT.Strategy;
-let jwtOptions = {};
-
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-jwtOptions.JWT_SECRET_KEY;
+const localStrategy = require('passport-local')
 
 const sqlDatabase = mysql.createConnection({
     host: process.env.DATABASE_HOST,
