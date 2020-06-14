@@ -1,0 +1,282 @@
+.FormOverlay2 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    background-color: #4c434e;
+    opacity: 95%;
+    -webkit-box-flex: auto;
+    -ms-flex: auto;
+    flex: content;
+    /* visibility: hidden;   */
+    
+}
+
+
+.Joinbox {
+    width: 500px;
+    height: 560px;
+    -webkit-box-flex: auto;
+    -ms-flex: auto;
+    flex: content;  
+    transform: translateY(90px);
+    transform: translateX(230px);
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 70px;
+    padding-top: 20px;
+    /* visibility: hidden; */
+    background: rgb(255, 255, 255);
+    margin-bottom: 100px;
+    position: absolute;
+
+
+}
+.signup_promo {
+    width: 380px;
+    height: 560px;
+    -webkit-box-flex: auto;
+    -ms-flex: auto;
+    flex: content;  
+    transform: translateY(90px);
+    transform: translateX(730px);
+    margin: 0 auto;
+    overflow: hidden;
+    margin: 70px 0px 100px 0px;
+    padding-top: 20px;
+    position: absolute;
+    background-color: rgb(15, 170, 9) ;
+      
+}
+.signup_promo h1 {
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-weight: 300;
+    font-size: 24px; 
+    margin: 80px 0px 0px 0px;
+} 
+
+.signup_promo p {
+    text-align: start;
+    position: relative;
+    font-size: 18px ;
+    font-weight: 400;
+    color: #fff;
+    margin: 40px 0px 0px 40px;
+    justify-content: center;
+    display: flex;
+
+}
+.closeJoinform i {
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-end;
+    text-align: end;
+    position: relative;
+    margin: -30px 50px 0px 0px;
+    transform: translate(20px, 30px);
+    text-decoration: none;
+    text-transform: none;
+
+}
+.closeJoinform i:hover {
+    text-decoration: none;
+    text-transform: none;
+    
+}
+
+.warning {
+    display: flex;
+    font-size: 16px;
+    flex: content;
+    justify-content: center;
+    margin: 25px 0px 0px 0px;
+}
+.warning h1 {
+    color: red;
+    font-size: 16px;
+    justify-content: center;
+    text-align: center;
+    margin: -5px 0px 0px 0px;
+
+}
+
+.create_inputs {
+    margin: 0 0 -10px 0;
+}
+
+.create_inputs input {
+    width: 380px;
+    margin: 0 auto;
+    -webkit-box-flex: auto;
+    -ms-flex: auto;
+    flex: content;
+    border: none;
+    border-bottom: 1px solid rgb(175, 120, 2);
+    padding: 5px;
+    background: none;
+    padding-left: 1%;
+    display: flex;
+    outline: 0px solid transparent;
+    
+
+}
+.create_inputs input::placeholder { 
+    color: transparent;
+ 
+  }
+  
+  .create_inputs input:-ms-input-placeholder { 
+    color: transparent;
+  }
+  
+  .create_inputs input::-ms-input-placeholder { 
+    color: transparent;
+  }
+
+.create_inputs p {
+    width: 100%;
+    margin: 0 auto;
+    justify-content: start;
+    -webkit-box-flex: auto;
+    -ms-flex: auto;
+    flex: content;
+    margin-left: 12%;
+    color: rgb(175, 120, 2);
+    display: flex;
+    object-fit: cover;
+    font-size: 16px;
+
+}
+
+.Errors {
+    margin: 0px 0px 0px 12%;
+    font-size: 18px;
+    font-weight: 500;
+    width: 100%;
+    height: 0;
+    position: relative;
+    color: rgb(224, 19, 19);
+    visibility: hidden;
+}
+
+.Errors i {
+    font-size: 14px;
+}
+
+.redErrors {
+    width: 0;
+    position: relative;
+    left: 380px;
+    color: red;
+    bottom: 35px;
+    /* visibility: hidden;     */
+}
+
+.checkmark {
+    width: 0;
+    position: relative;
+    left: 380px;
+    color: green;
+    bottom: 60px;
+    /* visibility: hidden;     */
+}
+.PWToggle{
+    width: 0;
+    position: relative;
+    left: 455px;
+    color: rgb(233, 95, 16);
+    bottom: 82px;
+}
+
+.hideJoinPW {
+    position: absolute;
+
+
+}
+.showJoinPW {
+    position: absolute;
+
+}
+
+.confirmToggle{
+    width: 0;
+    position: relative;
+    color: white;
+    left: 455px;
+    bottom: 82px;
+
+
+}
+
+.hideconfirmPW {
+    position: absolute;
+    color: rgb(233, 95, 16);
+
+}
+.showconfirmPW {
+    position: absolute;
+    color: rgb(233, 95, 16);
+
+    /* visibility: hidden;   */
+} 
+
+
+#create_textLinks {
+    width: 100%;
+    margin: 65px 0px 20px 0px;
+    justify-content: center;
+    display: flex;
+}
+
+.create_submit {
+    width: 400px;
+    height: 35px;
+    margin-top: 0px;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 1px;
+    color: #fff;
+    padding: 3px 0px 0px 0px;
+    background-color: rgb(3, 180, 3) ;  
+    border: none;
+    text-transform: capitalize;
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    outline: none;
+
+
+}
+
+.create_Login {
+    color: #fff;
+    margin-left: 5%;
+    text-decoration: none;
+}
+.create_Login a{
+    color: #fff;
+}
+
+.create_Login:hover {
+    text-decoration: underline;
+    color: #fff;
+    
+}
+
+.create_submit:hover {
+    background-color: rgb(216, 136, 16);
+}
+
+.create_inputs create_input {
+    padding-left: 7%;
+}
+
+.create_inputs {
+    margin-top: 0px;
+}
+
