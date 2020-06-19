@@ -12,12 +12,12 @@ let jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 jwtOptions.JWT_SECRET_KEY;
 
-const sqlDatabase = mysql.createConnection({
+var options = {
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE,
-});
+};
 
 // exports.login = async (req, res) => {
 //     try {
@@ -67,7 +67,7 @@ exports.register = async (req, res) => {
 
     const  {username, email, password, confirmpassword} = req.body;
 
-    sqlDatabase.query('SELECT * FROM users WHERE email =?', [email], async (error, results,) => {
+    options.query('SELECT * FROM users WHERE email =?', [email], async (error, results,) => {
         if(error) {
             console.log(error);
         } else
@@ -85,7 +85,7 @@ exports.register = async (req, res) => {
         
             });
         } 
-        sqlDatabase.query('SELECT * FROM users WHERE username =?', [username], async (error, results,) => {
+        options.query('SELECT * FROM users WHERE username =?', [username], async (error, results,) => {
             if(error) {
                 console.log(error)
                 return res.render('register', {
@@ -102,7 +102,7 @@ exports.register = async (req, res) => {
         let hashedpassword = await bcryptjs.hash(password, 8);
         console.log(hashedpassword);
 
-        sqlDatabase.query('INSERT INTO users SET ?', {username: username, email: email, password: hashedpassword}, (error, results) => {
+        options.query('INSERT INTO users SET ?', {username: username, email: email, password: hashedpassword}, (error, results) => {
             if(error) {
                 console.log(error);
             } else {
@@ -118,7 +118,7 @@ exports.login = async(req, res) => {
     console.log(req.body);
     const {email, password} = req.body;
 
-    sqlDatabase.query('SELECT LAST_INSERT_ID() as user_id', function(error, results, fields) {
+    options.query('SELECT LAST_INSERT_ID() as user_id', function(error, results, fields) {
         if(error) throw error;
 
         const user_id = results[0];

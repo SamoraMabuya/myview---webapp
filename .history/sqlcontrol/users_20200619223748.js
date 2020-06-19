@@ -120,19 +120,17 @@ exports.login = async(req, res) => {
 
     sqlDatabase.query('SELECT LAST_INSERT_ID() as user_id', function(error, results, fields) {
         if(error) throw error;
-
-        const user_id = results[0];
         console.log(results[0]);
-        req.login(user_id, function(error) {
+        req.login(results[0], function(error) {
             res.redirect('/');
         });
     });
 }
 
 passport.serializeUser(function(user, done) {
-  done(null, user_id);
+  done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-    done(null, user_id);
+    done(err, user);
   });

@@ -15,13 +15,16 @@ var MySQLStore = require('express-mysql-session')(session);
 dotenv.config({ path:  './.env'});
 
 
-const sqlDatabase = mysql.createConnection({
+var options = {
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE,
     
-});
+};
+
+var sessionStore = new MySQLStore(options);
+
 
 const publicDirectory = path.join(__dirname,'./public')
 app.use(express.static(publicDirectory));
@@ -31,20 +34,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
-
-var options = {
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE,
-
-};
-var sessionStore = new MySQLStore(options);
-
 app.use(session({
     secret: 'mesomesomess',
-    store: sessionStore,
     resave: false,
+    store: sessionStore,
     saveUninitialized: false,
     // cookie: { secure: true }
 }));

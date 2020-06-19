@@ -118,7 +118,7 @@ exports.login = async(req, res) => {
     console.log(req.body);
     const {email, password} = req.body;
 
-    sqlDatabase.query('SELECT LAST_INSERT_ID() as user_id', function(error, results, fields) {
+    sqlDatabase.query('SELECT LAST_INSERT_id() as id', function(error, results, fields) {
         if(error) throw error;
 
         const user_id = results[0];

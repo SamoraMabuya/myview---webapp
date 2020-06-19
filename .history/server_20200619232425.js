@@ -38,12 +38,10 @@ var options = {
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE,
 
-};
-var sessionStore = new MySQLStore(options);
+});
 
 app.use(session({
     secret: 'mesomesomess',
-    store: sessionStore,
     resave: false,
     saveUninitialized: false,
     // cookie: { secure: true }

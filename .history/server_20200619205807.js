@@ -8,7 +8,7 @@ const app = express();
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
-var MySQLStore = require('express-mysql-session')(session);
+const yarn = require('yarn');
 
 // initiatePassport(passport);
 
@@ -31,27 +31,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
-
-var options = {
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE,
-
-};
-var sessionStore = new MySQLStore(options);
-
+app.use(yarn());
 app.use(session({
-    secret: 'mesomesomess',
-    store: sessionStore,
-    resave: false,
-    saveUninitialized: false,
-    // cookie: { secure: true }
-}));
+    secret: 'secret',
+    resave: false, 
+    saveUninitialized: false
+})
 
-app.use(passport.initialize());
-app.use(passport.session());
+);
 
+// app.use(passport.session);
 sqlDatabase.connect((err) => {
     if (err) {
         console.log(err);

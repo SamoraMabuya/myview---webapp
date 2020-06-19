@@ -12,12 +12,12 @@ let jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 jwtOptions.JWT_SECRET_KEY;
 
-const sqlDatabase = mysql.createConnection({
+var options = {
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE,
-});
+};
 
 // exports.login = async (req, res) => {
 //     try {

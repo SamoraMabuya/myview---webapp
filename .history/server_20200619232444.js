@@ -39,7 +39,6 @@ var options = {
     database: process.env.DATABASE,
 
 };
-var sessionStore = new MySQLStore(options);
 
 app.use(session({
     secret: 'mesomesomess',
