@@ -19,48 +19,48 @@ const sqlDatabase = mysql.createConnection({
     database: process.env.DATABASE,
 });
 
-exports.login = async (req, res) => {
-    try {
-        const email = req.body.email;
-        const password  = req.body.password;
+// exports.login = async (req, res) => {
+//     try {
+//         const email = req.body.email;
+//         const password  = req.body.password;
 
 
 
-        if(!email || !password) {
-            return res.status(400).render('login', {
-                message: "Fields cannot be empty"
-            })
-        }
-        sqlDatabase.query('SELECT * FROM users WHERE email =?', [email],  async (error, results) => {
-            if(!results || !(await bcryptjs.compare(password, results[0].password ) ) ) {
-                console.log(error);
-                res.status(401).render('login', {
-                    message: 'Check password and email again'
-                })             
+//         if(!email || !password) {
+//             return res.status(400).render('login', {
+//                 message: "Fields cannot be empty"
+//             })
+//         }
+//         sqlDatabase.query('SELECT * FROM users WHERE email =?', [email],  async (error, results) => {
+//             if(!results || !(await bcryptjs.compare(password, results[0].password ) ) ) {
+//                 console.log(error);
+//                 res.status(401).render('login', {
+//                     message: 'Check password and email again'
+//                 })             
                 
-            } else {
+//             } else {
             
-                const Id = results[0].Id;
+//                 const Id = results[0].Id;
 
-                const token = jwt.sign({Id}, process.env.JWT_SECRET_KEY, {
-                    expiresIn: process.env.JWT_EXPIRES_IN
-                });
-                console.log("The token is: " + token);
+//                 const token = jwt.sign({Id}, process.env.JWT_SECRET_KEY, {
+//                     expiresIn: process.env.JWT_EXPIRES_IN
+//                 });
+//                 console.log("The token is: " + token);
 
-                const cookieOptions = {
-                    expires: new Date(
-                        Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
-                    httpOnly: true
-                };
-                res.cookie('jwt', token, cookieOptions);
-                res.status(200).redirect("/");
-            }
-        })
+//                 const cookieOptions = {
+//                     expires: new Date(
+//                         Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+//                     httpOnly: true
+//                 };
+//                 res.cookie('jwt', token, cookieOptions);
+//                 res.status(200).redirect("/");
+//             }
+//         })
 
-    } catch (error) {
-        console.log(error);
-    }
-}
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
 exports.register = async (req, res) => {
     console.log(req.body);

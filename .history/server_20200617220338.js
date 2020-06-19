@@ -9,8 +9,9 @@ const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 
+const initiatePassport = require("./sqlcontrol/passportConfig")
 
-// initiatePassport(passport);
+initiatePassport(passport);
 
 dotenv.config({ path:  './.env'});
 
@@ -40,7 +41,8 @@ app.use(session({
 
 );
 
-// app.use(passport.session);
+app.use(passport.initialize);
+app.use(passport.session);
 sqlDatabase.connect((err) => {
     if (err) {
         console.log(err);

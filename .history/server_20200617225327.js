@@ -40,7 +40,7 @@ app.use(session({
 
 );
 
-// app.use(passport.session);
+app.use(passport.session);
 sqlDatabase.connect((err) => {
     if (err) {
         console.log(err);

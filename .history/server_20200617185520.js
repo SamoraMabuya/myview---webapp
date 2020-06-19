@@ -7,11 +7,6 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors');
 const session = require('express-session');
-const passport = require('passport');
-
-
-// initiatePassport(passport);
-
 dotenv.config({ path:  './.env'});
 
 
@@ -36,11 +31,7 @@ app.use(session({
     secret: 'secret',
     resave: false, 
     saveUninitialized: false
-})
-
-);
-
-// app.use(passport.session);
+}))
 sqlDatabase.connect((err) => {
     if (err) {
         console.log(err);

@@ -9,6 +9,7 @@ const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 
+const initiatePassport = require("./sqlcontrol/passportConfig")
 
 // initiatePassport(passport);
 
@@ -40,7 +41,7 @@ app.use(session({
 
 );
 
-// app.use(passport.session);
+app.use(passport.session);
 sqlDatabase.connect((err) => {
     if (err) {
         console.log(err);
