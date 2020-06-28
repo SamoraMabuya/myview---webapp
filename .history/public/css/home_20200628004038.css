@@ -333,12 +333,10 @@ body {
 }
 
 .btn-scroll-left {
-    background: rgba(234, 225, 236, 0.521);
-    margin: -100px 0px 0px 30px;
-    border: solid;
-    border-width: 0.3px;
-    border-color: rgb(92, 67, 121);
-    border-radius: 5px;
+    background: rgb(221, 86, 8);
+    margin: 0px 0px 0px 50px;
+    border: none;
+    border-radius: 10px;
     position: absolute;
     width: 40px;
     height: 60px;
@@ -349,14 +347,8 @@ body {
 }
 
 .btn-scroll-left i {
-    color: rgb(74, 14, 114);
-    font-size: 32px;
+    color: #fff;
+    font-size: 25px;
     display: flex;
-    position: relative;
-    -webkit-box-flex: auto;
-    -ms-flex: auto;
-    flex: content;
-    margin:  15px 0px 0px 10px;
-    
-    
+    position: absolute;
 }

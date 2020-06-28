@@ -336,8 +336,7 @@ body {
     background: rgba(234, 225, 236, 0.521);
     margin: -100px 0px 0px 30px;
     border: solid;
-    border-width: 0.3px;
-    border-color: rgb(92, 67, 121);
+    border-width: 1px;
     border-radius: 5px;
     position: absolute;
     width: 40px;

@@ -258,26 +258,37 @@ body {
     object-fit: cover;
     display: block;
     margin: 0px 0px 100px 0px;
+    
 }
 
 .movie-containers {
     display: flex;
     -webkit-box-flex: auto;
     -ms-flex: auto;
-    flex: content;
+    /* flex: 0 0 auto; */
     margin: 30px 20px -100px 20px;
     box-shadow: 0px 1px 4px 2.5px;
     border-radius: 10px;
+    display: inline;
+
+
 }
 
 .movie-groups {
-    -webkit-box-flex: auto;
+    /* -webkit-box-flex: auto; */
     -ms-flex: auto;
     flex: content;
     margin: 0px 0px 0px 30px;
     display: flex;
     position: relative;
     width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    
+}
+-webkit-scrollbar { 
+display: none;
+
 }
 
 .caption-img-overlay {
@@ -330,33 +341,4 @@ body {
     border-top-right-radius: 10px;
     opacity: 40%;
     transform: translate(0px, 0px);
-}
-
-.btn-scroll-left {
-    background: rgba(234, 225, 236, 0.521);
-    margin: -100px 0px 0px 30px;
-    border: solid;
-    border-width: 0.3px;
-    border-color: rgb(92, 67, 121);
-    border-radius: 5px;
-    position: absolute;
-    width: 40px;
-    height: 60px;
-    display: flex;
-    -webkit-box-flex: auto;
-    -ms-flex: auto;
-    flex: content;
-}
-
-.btn-scroll-left i {
-    color: rgb(74, 14, 114);
-    font-size: 32px;
-    display: flex;
-    position: relative;
-    -webkit-box-flex: auto;
-    -ms-flex: auto;
-    flex: content;
-    margin:  15px 0px 0px 10px;
-    
-    
 }
