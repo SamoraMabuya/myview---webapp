@@ -1,0 +1,21 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    height: 100%;
+
+}
+
+body {
+    min-width: 1000px;
+    height: 100%;
+    position: relative;
+
+}
+
+.input-group mb-3 {
+    bottom: 100px;
+    position: absolute;
+}

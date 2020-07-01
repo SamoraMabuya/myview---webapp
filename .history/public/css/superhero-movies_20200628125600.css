@@ -1,0 +1,29 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: rgb(231, 223, 231);
+    min-width: 1000px;
+    height: 100%;
+    position: relative;
+}
+
+
+#comments {
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    margin: 40%;
+    position: absolute;
+    
+}
+
+.input-group mb-3 {
+    margin-top: 100px;
+}

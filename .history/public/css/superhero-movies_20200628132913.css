@@ -1,0 +1,32 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: rgb(231, 223, 231);
+    /* min-width: 1000px; */
+    height: 100%;
+    position: relative;
+}
+
+
+.comment-wrapper {
+    position: absolute;
+    width: 650px;
+    margin: 450px 0px 0px 0px;
+}
+
+.sent-btn1 {
+    /* display: flex; */
+    -webkit-box-flex: auto;
+    -ms-flex: auto;
+    flex: content;
+    position: absolute;
+    justify-content: end;
+    text-align: end;
+}
