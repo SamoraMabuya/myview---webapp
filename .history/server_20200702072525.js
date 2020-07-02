@@ -96,37 +96,27 @@ passport.use(new LocalStrategy({
 
         var db = require('./db');
 
-        db.query('SELECT * FROM users WHERE email = ?', [email], (err, results, fields) => {
+        db.query('SELECT * FROM users WHERE email = ?', [email], function (err, rows, res) {
             if (err)
                 return done(err);
-            console.log(err, fields);
 
 
-            if (results.length === 0) {
-                done(null, false);
-            } else {
 
-                const hash = results[0].
-                    password.toString();
+            if (!rows.length) {
+                return done(null, false);
 
-                const id = results[0].id;
-
-
-                bcrypt.compare(password, hash, function (err, response) {
-                    if (response === true) {
-                        return done(null, id);
-                    } else {
-                        console.log(err);
-                        return done(null, false);
-
-                    }
-                })
             }
 
-        })
+            if (!(rows[0].password == password))
+                return done(null, false);
 
-    }));
 
+
+            console.log('user success');
+            return done(null, rows[0])
+
+        });
+    }))
 
 
 app.listen(5500, () => {

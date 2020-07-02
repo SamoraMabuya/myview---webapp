@@ -97,8 +97,8 @@ passport.use(new LocalStrategy({
         var db = require('./db');
 
         db.query('SELECT * FROM users WHERE email = ?', [email], (err, results, fields) => {
-            if (err)
-                return done(err);
+            if (err) 
+            return done(err);
             console.log(err, fields);
 
 
@@ -109,16 +109,21 @@ passport.use(new LocalStrategy({
                 const hash = results[0].
                     password.toString();
 
-                const id = results[0].id;
-
-
+        
                 bcrypt.compare(password, hash, function (err, response) {
                     if (response === true) {
-                        return done(null, id);
+                        console.log(response);
+                        console.log('success');
+                        console.log(user_id);
+                        console.log(results);
+                        console.log(err);
+
+                        return done(null,
+                            {user_id: results[0].id});
                     } else {
                         console.log(err);
                         return done(null, false);
-
+                        
                     }
                 })
             }
@@ -126,6 +131,12 @@ passport.use(new LocalStrategy({
         })
 
     }));
+
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
 
 
 

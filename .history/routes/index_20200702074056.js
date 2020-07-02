@@ -101,14 +101,14 @@ router.post("/register", function (req, res, next) {
                         if (error) throw error;
                         console.log(results);
 
-                        sqlDatabase.query('SELECT LAST_INSERT_ID() as id', async function (error, results, fields, err) {
+                        sqlDatabase.query('SELECT LAST_INSERT_ID() as user_id', async function (error, results, fields, err) {
                             if (error) throw error;
                             console.log(error);
 
-                            const id = results[0];
-                            console.log(id);
+                            const user_id = results[0];
+                            console.log(user_id);
 
-                            req.login(id, function (err) {
+                            req.login(user_id, function (err) {
                                 res.redirect('/');
                                 console.log(err, req);
                             })
@@ -120,24 +120,23 @@ router.post("/register", function (req, res, next) {
 
         });
 
-        passport.serializeUser(function (id, done) {
-            console.log(id);
-            done(null, id);
+        passport.serializeUser(function (user_id, done) {
+            done(null, user_id);
             console.log(done);
             console.log('serialized');
 
         });
     });
 
-    passport.deserializeUser(function (id, done) {
-        sqlDatabase.query("select * from users where id = "+ id, function (err, rows) {
-        done(null, id);
+    passport.deserializeUser(function (user_id, done) {
+        sqlDatabase.query("select * from users where id = "+ user_id, function (err, rows) {
+        done(null, user_id);
         console.log(done);
         console.log('deserialized');
-        
-        })
-    })
-})
+
+
+    });
+});
 
 function authenticationMiddleware() {
     return function (req, res, next) {

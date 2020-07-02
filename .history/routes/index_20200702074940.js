@@ -121,7 +121,6 @@ router.post("/register", function (req, res, next) {
         });
 
         passport.serializeUser(function (id, done) {
-            console.log(id);
             done(null, id);
             console.log(done);
             console.log('serialized');
@@ -129,7 +128,7 @@ router.post("/register", function (req, res, next) {
         });
     });
 
-    passport.deserializeUser(function (id, done) {
+    passport.deserializeUser(function (user_id, done) {
         sqlDatabase.query("select * from users where id = "+ id, function (err, rows) {
         done(null, id);
         console.log(done);
