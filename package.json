@@ -24,6 +24,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
     "express-mysql-session": "^2.1.4",
+    "express-passport-logout": "^0.1.0",
     "express-session": "^1.17.1",
     "express-validator": "^5.3.0",
     "hbs": "^4.1.1",
