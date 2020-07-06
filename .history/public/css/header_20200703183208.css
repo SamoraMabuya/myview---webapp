@@ -1,0 +1,116 @@
+
+.buttons ul {
+    display: flex;
+    -webkit-box-flex: auto;
+    -ms-flex: auto;
+    flex: content;
+    margin: 5px 0px 0px 75%;
+    position: absolute;
+}
+
+.buttons li {
+    list-style: none;
+}
+
+.logoutbutton {
+    display: flex;
+    -webkit-box-flex: auto;
+    -ms-flex: auto;
+    flex: content;
+    margin: 0px 0px 0px 85%;
+    position: absolute;
+}
+
+.logoutbtn {
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 0px;
+    background-color: rgb(15, 170, 9);
+    color: #fff;
+    padding: 0px 0px 3px;
+    background-color: rgb(15, 170, 9);
+    text-decoration: none;
+    margin: 5px 0px 0px 85%;
+    position: absolute;
+}
+.loginbutton {
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 0px;
+    background-color: rgb(15, 170, 9);
+    color: #fff;
+    padding: 0px 0px 3px;
+    background-color: rgb(15, 170, 9);
+    text-decoration: none;
+}
+
+.loginbutton:hover {
+    background-color: rgb(56, 85, 138);
+}
+
+.login:hover {
+    background-color: purple;
+}
+
+.joinbutton {
+    margin-left: 25px;
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 0px;
+    background-color: rgb(15, 170, 9);
+    color: #fff;
+    padding: 0px 0px 3px;
+}
+
+.joinbutton:hover {
+    background-color: rgb(56, 85, 138);
+}
+
+.Join:hover {
+    background-color: purple;
+}
+
+.opinsearchtab {
+    text-align: center;
+    background-color: rgb(14, 13, 13);
+    padding: 8px;
+    box-shadow: 0px 0.5px 10px;
+    display: flex;
+    -webkit-box-flex: auto;
+    -ms-flex: auto;
+    flex: content;
+    z-index: 1050;
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+#searchbox_container {
+    background-color: white;
+    width: 40%;
+    padding: 10px;
+    border-radius: 5px;
+    border-width: 2px;
+    border: 1px solid rgb(204, 169, 14);
+    display: flex;
+    margin: 0 auto;
+}
+
+.opinsearchtab i {
+    color: rgb(95, 1, 114);
+    padding: 5px 0px 0px 15px;
+}
+
+.searchbox {
+    border: none;
+    justify-content: start;
+    text-align: start;
+    padding: 0px 0px 0px 30px;
+    width: 100%;
+}

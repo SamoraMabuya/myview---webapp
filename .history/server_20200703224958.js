@@ -1,0 +1,115 @@
+const express = require('express');
+var cookieSession = require('cookie-session')
+
+const hbs = require('express-handlebars');
+
+const mysql = require('mysql');
+const dotenv = require('dotenv');
+const path = require('path');
+const reload = require('reload');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const app = express();
+const cors = require('cors');
+const expressValidator = require('express-validator');
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
+const session = require('express-session');
+
+var MySQLStore = require('express-mysql-session')(session);
+
+
+
+var flash = require('express-flash');
+
+
+
+
+dotenv.config({ path: './.env' });
+
+
+var sqlDatabase = mysql.createConnection({
+    host: process.env.DATABASE_HOST,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE,
+
+});
+
+
+
+app.set('view engine', 'hbs');
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+app.use(cookieParser('key cat'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
+
+app.use(cors());
+
+
+const publicDirectory = path.join(__dirname, './public')
+app.use(express.static(publicDirectory));
+
+var options = {
+    host: process.env.DATABASE_HOST,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE,
+
+};
+
+var sessionStore = new MySQLStore(options);
+
+app.use(function(req, res, next) {
+    res.locals.isAuthenticated = req.isAuthenticated();
+    next();
+app.use(session({
+    secret: 'key cat',
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+    cookie: {
+        httpOnly: true,
+        secure: false,
+        maxAge: 60000
+    }
+}));
+
+
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+});
+
+
+sqlDatabase.connect((err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('mysql is connected')
+    }
+})
+
+
+
+app.use('/', require('./routes/index'));
+app.use('/index', require('./routes/index'));
+
+
+
+
+    app.listen(5500, () => {
+        reload(app);
+        console.log('server has started on this port')
+    })
+
+
