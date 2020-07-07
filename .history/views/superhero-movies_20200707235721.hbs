@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyView:Superheroes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/superhero-movies.css">
+</head>
+<script src="/socket.io/socket.io.js"></script>
+<body>
+
+    <div id="allcomments-container">
+        <div class="user-comments">
+            <ul>
+                <li class="username" name="username">Username</li>
+                <li class="date" name="date">6/28/2020</li>
+            </ul>
+            <id class="messages">{{data}}</id>
+        </div>
+    </div>
+
+    <form class="messageBox" name="comments" id="commentForm" onsubmit="return sendMessage();">
+        <div class="comment-wrapper">
+            <textarea class="commentInput" id="message" name="comments" type="text"
+                placeholder="Join the discussion"></textarea>
+            <button class="btn btn-primary" type="submit" id="submitbtn">Button</button>
+
+        </div>
+    </form>
+
+    <script src="/javascript/superhero-movies.js"></script>
+    <script src="/reload/reload.js"></script>
+
+</body>
+
+</html>
