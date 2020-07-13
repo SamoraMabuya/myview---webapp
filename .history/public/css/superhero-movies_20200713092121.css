@@ -22,4 +22,8 @@ h1 {
     margin: 0 auto;
 }
 
-#
+#sendbtn {
+    float: left;
+    display: flex;
+    margin: 10px;
+}

@@ -24,7 +24,7 @@
 <body onload="loadComments()" >
     <div class="container">
         <h1>Welcome</h1>
-        <div id="comments" class="card mb-2">
+        <form id="comments" class="card mb-2">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -32,15 +32,15 @@
                 Some quick example text to build on the card title and make up the bulk of the
                 card's content.
             </div>
-        </div>
+        </form>
 
 
 
         <hr>
 
-        <form id="main-content" method="POST" action="superhero-movies">
+        <div id="main-content">
             <h3>Leave your comments below</h3>
-            <div class="form-group" method="POST" action="superhero-movies">
+            <div class="form-group">
                 <label for="name">Name:</label>
                 <input class="form-control" type="text" id="name" Required>
             </div>
@@ -48,8 +48,8 @@
                 <label for="message">Type Comment Below</label>
                 <textarea class="form-control" id="message" Required></textarea>
             </div>
-            <button type="submit" class="btn btn-success" id="sendbtn">Comment!</button>
-        </form>
+            <button type="button" class="btn btn-success">Comment!</button>
+        </div>
 
     </div>
 
