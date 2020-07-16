@@ -102,7 +102,7 @@ sqlDatabase.connect((err) => {
 
 
 
-app.use((req, res, next) => {
+io.use((req, res, next) => {
     res.locals.isAuthenticated = req.isAuthenticated();
     next();
 })

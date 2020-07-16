@@ -1,6 +1,6 @@
 const express = require('express');
 const expressValidator = require('express-validator');
-const app = express();
+var app = express();
 
 
 const mysql = require('mysql');
@@ -23,8 +23,8 @@ var MySQLStore = require('express-mysql-session')(session);
 
 
 
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
 
 io.on('connection', (socket) => {
     console.log('socket connect successful');
@@ -102,10 +102,12 @@ sqlDatabase.connect((err) => {
 
 
 
-app.use((req, res, next) => {
+app.use(function(req, res, next) {
     res.locals.isAuthenticated = req.isAuthenticated();
     next();
-})
+
+});
+
 
 
 
@@ -117,7 +119,7 @@ app.use('/index', require('./routes/index'));
 
 
 
-server.listen(5500, () => {
+http.listen(5500, () => {
     reload(app);
     console.log('server has started on this port')
 })

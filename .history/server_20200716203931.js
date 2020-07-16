@@ -1,6 +1,6 @@
 const express = require('express');
 const expressValidator = require('express-validator');
-const app = express();
+var app = express();
 
 
 const mysql = require('mysql');
@@ -23,16 +23,16 @@ var MySQLStore = require('express-mysql-session')(session);
 
 
 
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
+// var server = require('http').createServer(app);
+// var io = require('socket.io')(server);
 
-io.on('connection', (socket) => {
-    console.log('socket connect successful');
+// io.on('connection', (socket) => {
+//     console.log('socket connect successful');
 
-    socket.on('chat', function(data) {
-        io.sockets.emit('chat', data)
-    })
-});
+//     socket.on('chat', function(data) {
+//         io.sockets.emit('chat', data)
+//     })
+// });
 
 
 
@@ -102,22 +102,24 @@ sqlDatabase.connect((err) => {
 
 
 
-app.use((req, res, next) => {
-    res.locals.isAuthenticated = req.isAuthenticated();
-    next();
-})
+server.use((function(req, res, next) {
+                res.locals.isAuthenticated = req.isAuthenticated();
+                next();
+
+            }
 
 
 
 
 
-app.use('/', require('./routes/index'));
-app.use('/index', require('./routes/index'));
+
+
+            app.use('/', require('./routes/index')); app.use('/index', require('./routes/index'));
 
 
 
 
-server.listen(5500, () => {
-    reload(app);
-    console.log('server has started on this port')
-})
+            app.listen(5500, () => {
+                reload(app);
+                console.log('server has started on this port')
+            })

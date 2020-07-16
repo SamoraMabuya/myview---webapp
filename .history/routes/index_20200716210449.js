@@ -53,33 +53,29 @@ router.post("/superhero-movies", function(req, res) {
     const { comments } = req.body;
     const sqlDatabase = require('../db.js');
     const user = req.user;
+})
 
-    io.on('connection', (socket) => {
-        console.log('socket connect successful');
 
-        socket.on('chat', function(data) {
-            io.sockets.emit('chat', data)
-        })
-    });
 
-    // sqlDatabase.query('INSERT INTO comments (comments) VALUES (?)', [comments], function(error, results, fields) {
-    sqlDatabase.query('INSERT INTO comments (user_id, comments) VALUES (?, ?)', [user, comments], function(error, results, fields) {
+
+// sqlDatabase.query('INSERT INTO comments (comments) VALUES (?)', [comments], function(error, results, fields) {
+sqlDatabase.query('INSERT INTO comments (user_id, comments) VALUES (?, ?)', [user, comments], function(error, results, fields) {
+    if (error) throw error;
+    console.log(results);
+    return res.render('superhero-movies')
+})
+
+sqlDatabase.query("SELECT users.username, comments.comments, comments.date FROM users INNER JOIN comments ON users.user_id=comments.user_id",
+    function(error, results, fields) {
         if (error) throw error;
-        console.log(results);
-        return res.render('superhero-movies')
+
+
+        results.forEach((user) => {
+            console.log(user.username, user.date, user.comments);
+
+        })
     })
 
-    sqlDatabase.query("SELECT users.username, comments.comments, comments.date FROM users INNER JOIN comments ON users.user_id=comments.user_id",
-        function(error, results, fields) {
-            if (error) throw error;
-
-
-            results.forEach((user) => {
-                console.log(user.username, user.date, user.comments);
-
-            })
-        })
-})
 
 
 

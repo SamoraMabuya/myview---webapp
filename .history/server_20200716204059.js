@@ -1,6 +1,6 @@
 const express = require('express');
 const expressValidator = require('express-validator');
-const app = express();
+var app = express();
 
 
 const mysql = require('mysql');
@@ -103,21 +103,19 @@ sqlDatabase.connect((err) => {
 
 
 app.use((req, res, next) => {
-    res.locals.isAuthenticated = req.isAuthenticated();
-    next();
-})
+            res.locals.isAuthenticated = req.isAuthenticated();
+            next();
 
 
 
 
-
-app.use('/', require('./routes/index'));
-app.use('/index', require('./routes/index'));
-
+            app.use('/', require('./routes/index'));
+            app.use('/index', require('./routes/index'));
 
 
 
-server.listen(5500, () => {
-    reload(app);
-    console.log('server has started on this port')
-})
+
+            app.listen(5500, () => {
+                reload(app);
+                console.log('server has started on this port')
+            })

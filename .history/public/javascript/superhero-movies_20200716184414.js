@@ -1,20 +1,21 @@
 var socket = io.connect("http://localhost:5500");
 
-var comments = document.getElementById('comments');
+
+var message = document.getElementById('message');
 handle = document.getElementById('handle');
 btn = document.getElementById('send');
 output = document.getElementById('output');
 
 btn.addEventListener("click", () => {
-    socket.emit('chat', {
-        comments: comments.value,
+    socket.emit('user_comment', {
+        message: message.value,
         handle: handle.value
     });
 
 });
 
-socket.on('chat', function(data) {
-    output.innerHTML += '<P><strong>' + data.handle + ': </strong>' + data.comments + '</p>';
+socket.on('user_comment', function(data) {
+    output.innerHTML += '<P><strong>' + data.handle + ': </strong>' + data.message + '</p>';
 })
 
 // function loadComments() {

@@ -54,13 +54,7 @@ router.post("/superhero-movies", function(req, res) {
     const sqlDatabase = require('../db.js');
     const user = req.user;
 
-    io.on('connection', (socket) => {
-        console.log('socket connect successful');
 
-        socket.on('chat', function(data) {
-            io.sockets.emit('chat', data)
-        })
-    });
 
     // sqlDatabase.query('INSERT INTO comments (comments) VALUES (?)', [comments], function(error, results, fields) {
     sqlDatabase.query('INSERT INTO comments (user_id, comments) VALUES (?, ?)', [user, comments], function(error, results, fields) {
@@ -80,6 +74,7 @@ router.post("/superhero-movies", function(req, res) {
             })
         })
 })
+
 
 
 

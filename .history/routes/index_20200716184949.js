@@ -13,10 +13,10 @@ const LocalStrategy = require('passport-local').Strategy;
 var flash = require('express-flash-messages');
 const { session } = require('passport');
 
+var server = require('http').createServer(app);
+var io = require('socket.io')(server).sockets;
 
 
-var server = require('http').createServer(express);
-var io = require('socket.io')(server);
 
 
 // recieve pages from client
@@ -57,8 +57,8 @@ router.post("/superhero-movies", function(req, res) {
     io.on('connection', (socket) => {
         console.log('socket connect successful');
 
-        socket.on('chat', function(data) {
-            io.sockets.emit('chat', data)
+        socket.on('user_comment', function(data) {
+            io.sockets.emit('user_comment', data)
         })
     });
 

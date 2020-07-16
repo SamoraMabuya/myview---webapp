@@ -27,7 +27,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
-    console.log('socket connect successful');
+    console.log('socket connect successful', socket.id);
 
     socket.on('chat', function(data) {
         io.sockets.emit('chat', data)

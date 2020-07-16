@@ -13,10 +13,10 @@ const LocalStrategy = require('passport-local').Strategy;
 var flash = require('express-flash-messages');
 const { session } = require('passport');
 
+var server = require('http').createServer(app);
+var io = require('socket.io')(server).sockets;
 
 
-var server = require('http').createServer(express);
-var io = require('socket.io')(server);
 
 
 // recieve pages from client

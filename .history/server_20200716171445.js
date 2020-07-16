@@ -21,16 +21,14 @@ const session = require('express-session');
 const { on } = require('process');
 var MySQLStore = require('express-mysql-session')(session);
 
-
-
 var server = require('http').createServer(app);
-var io = require('socket.io')(server);
+var io = require('socket.io')(server).sockets;
 
 io.on('connection', (socket) => {
     console.log('socket connect successful');
 
-    socket.on('chat', function(data) {
-        io.sockets.emit('chat', data)
+    socket.on('user_comment', function(data) {
+        io.sockets.emit('user_comment', data)
     })
 });
 
@@ -102,10 +100,12 @@ sqlDatabase.connect((err) => {
 
 
 
-app.use((req, res, next) => {
+app.use(function(req, res, next) {
     res.locals.isAuthenticated = req.isAuthenticated();
     next();
-})
+
+});
+
 
 
 
@@ -117,7 +117,7 @@ app.use('/index', require('./routes/index'));
 
 
 
-server.listen(5500, () => {
+sa.listen(5500, () => {
     reload(app);
     console.log('server has started on this port')
 })

@@ -1,6 +1,5 @@
 const express = require('express');
 const expressValidator = require('express-validator');
-const app = express();
 
 
 const mysql = require('mysql');
@@ -21,6 +20,7 @@ const session = require('express-session');
 const { on } = require('process');
 var MySQLStore = require('express-mysql-session')(session);
 
+const app = express();
 
 
 var server = require('http').createServer(app);
@@ -117,7 +117,7 @@ app.use('/index', require('./routes/index'));
 
 
 
-server.listen(5500, () => {
+app.listen(5500, () => {
     reload(app);
     console.log('server has started on this port')
 })

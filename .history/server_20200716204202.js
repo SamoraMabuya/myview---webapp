@@ -117,7 +117,7 @@ app.use('/index', require('./routes/index'));
 
 
 
-server.listen(5500, () => {
+app.listen(5500, () => {
     reload(app);
     console.log('server has started on this port')
 })

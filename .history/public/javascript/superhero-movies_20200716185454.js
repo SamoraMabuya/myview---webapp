@@ -6,14 +6,14 @@ btn = document.getElementById('send');
 output = document.getElementById('output');
 
 btn.addEventListener("click", () => {
-    socket.emit('chat', {
+    socket.emit('user_comment', {
         comments: comments.value,
         handle: handle.value
     });
 
 });
 
-socket.on('chat', function(data) {
+socket.on('user_comment', function(data) {
     output.innerHTML += '<P><strong>' + data.handle + ': </strong>' + data.comments + '</p>';
 })
 

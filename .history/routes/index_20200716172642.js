@@ -13,10 +13,7 @@ const LocalStrategy = require('passport-local').Strategy;
 var flash = require('express-flash-messages');
 const { session } = require('passport');
 
-
-
-var server = require('http').createServer(express);
-var io = require('socket.io')(server);
+// router.use(flash());
 
 
 // recieve pages from client
@@ -50,17 +47,9 @@ router.get("/logout", async function(req, res) {
 });
 
 router.post("/superhero-movies", function(req, res) {
-    const { comments } = req.body;
+    const { message } = req.body;
     const sqlDatabase = require('../db.js');
     const user = req.user;
-
-    io.on('connection', (socket) => {
-        console.log('socket connect successful');
-
-        socket.on('chat', function(data) {
-            io.sockets.emit('chat', data)
-        })
-    });
 
     // sqlDatabase.query('INSERT INTO comments (comments) VALUES (?)', [comments], function(error, results, fields) {
     sqlDatabase.query('INSERT INTO comments (user_id, comments) VALUES (?, ?)', [user, comments], function(error, results, fields) {
