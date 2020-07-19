@@ -51,20 +51,8 @@ router.get("/logout", async function(req, res) {
 
 router.post("/superhero-movies", function(req, res) {
     const { comments } = req.body;
-    const user = req.user;
-
     const sqlDatabase = require('../db.js');
-    sqlDatabase.connect(function(err) {
-        io.on('connection', (socket) => {
-            console.log('socket connect successful');
-
-            socket.on('chat', function(data) {
-                io.sockets.emit('chat', data)
-            })
-        })
-    })
-
-
+    const user = req.user;
 
     io.on('connection', (socket) => {
         console.log('socket connect successful');
@@ -78,14 +66,12 @@ router.post("/superhero-movies", function(req, res) {
     sqlDatabase.query("INSERT INTO comments (user_id, comments) VALUES (?, ?)", [user, comments], function(error, results, fields) {
         if (error) throw error;
         console.log(results);
-        // return res.render('superhero-movies')
+        return res.render('superhero-movies')
     })
-})
-router.get("/superhero-movies", authenticationMiddleware(), function(req, res) {
 
     sqlDatabase.query("SELECT users.username, comments.comments, comments.date FROM users INNER JOIN comments ON users.user_id=comments.user_id",
         function(error, results, fields) {
-            res.render('superhero-movies', JSON.stringify(results));
+            if (error) throw error;
 
 
             results.forEach((user) => {
@@ -95,6 +81,13 @@ router.get("/superhero-movies", authenticationMiddleware(), function(req, res) {
         })
 })
 
+
+
+
+
+router.get("/superhero-movies", authenticationMiddleware(), function(req, res) {
+    res.render('superhero-movies');
+})
 
 
 router.post("/login",

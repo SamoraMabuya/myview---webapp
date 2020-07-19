@@ -21,11 +21,7 @@ const session = require('express-session');
 const { on } = require('process');
 var MySQLStore = require('express-mysql-session')(session);
 
-app.use(function(request, result, next) {
-    result.setHeader("Access-Control-Allow-Origin", "*");
-    next();
 
-})
 
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);

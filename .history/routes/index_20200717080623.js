@@ -50,8 +50,7 @@ router.get("/logout", async function(req, res) {
 });
 
 router.post("/superhero-movies", function(req, res) {
-    const { comments } = req.body;
-    const user = req.user;
+
 
     const sqlDatabase = require('../db.js');
     sqlDatabase.connect(function(err) {
@@ -64,6 +63,8 @@ router.post("/superhero-movies", function(req, res) {
         })
     })
 
+    const { comments } = req.body;
+    const user = req.user;
 
 
     io.on('connection', (socket) => {
@@ -82,10 +83,12 @@ router.post("/superhero-movies", function(req, res) {
     })
 })
 router.get("/superhero-movies", authenticationMiddleware(), function(req, res) {
+    res.render('superhero-movies');
+
 
     sqlDatabase.query("SELECT users.username, comments.comments, comments.date FROM users INNER JOIN comments ON users.user_id=comments.user_id",
         function(error, results, fields) {
-            res.render('superhero-movies', JSON.stringify(results));
+            if (error) throw error;
 
 
             results.forEach((user) => {
@@ -94,6 +97,10 @@ router.get("/superhero-movies", authenticationMiddleware(), function(req, res) {
             })
         })
 })
+
+
+
+
 
 
 

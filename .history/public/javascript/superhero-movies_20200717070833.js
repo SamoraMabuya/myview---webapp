@@ -8,34 +8,18 @@ output = document.getElementById('output');
 btn.addEventListener("click", () => {
     socket.emit('chat', {
         comments: comments.value,
-        handle: handle.value,
-
+        handle: handle.value
     });
-
-    return false;
 
 });
 
 socket.on('chat', function(data) {
+    var results = JSON.parse(results);
 
-    output.innerHTML += '<P><strong>' + data.handle + ': </strong>' + data.comments + '</p>';
+    output.innerHTML += '<P><strong>' + handle.username + ': </strong>' + data.comments + '</p>';
 })
 
-$.ajax({
-        url: socket + "/superhero-movies",
-        method: "GET",
-        success: function(response) {
-            console.log(response);
-
-            var results = JSON.parse(results);
-
-            output.innerHTML += '<P><strong>' + handle.username + ': </strong>' + data.comments + '</p>';
-
-
-
-        }
-    })
-    // function loadComments() {
+// function loadComments() {
 
 //     var xhttp = new XMLHttpRequest();
 

@@ -50,8 +50,7 @@ router.get("/logout", async function(req, res) {
 });
 
 router.post("/superhero-movies", function(req, res) {
-    const { comments } = req.body;
-    const user = req.user;
+
 
     const sqlDatabase = require('../db.js');
     sqlDatabase.connect(function(err) {
@@ -64,6 +63,8 @@ router.post("/superhero-movies", function(req, res) {
         })
     })
 
+    const { comments } = req.body;
+    const user = req.user;
 
 
     io.on('connection', (socket) => {

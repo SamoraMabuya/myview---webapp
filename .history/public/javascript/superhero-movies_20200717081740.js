@@ -26,13 +26,6 @@ $.ajax({
         method: "GET",
         success: function(response) {
             console.log(response);
-
-            var results = JSON.parse(results);
-
-            output.innerHTML += '<P><strong>' + handle.username + ': </strong>' + data.comments + '</p>';
-
-
-
         }
     })
     // function loadComments() {

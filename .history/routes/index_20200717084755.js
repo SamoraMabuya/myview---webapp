@@ -64,22 +64,22 @@ router.post("/superhero-movies", function(req, res) {
         })
     })
 
+})
 
+io.on('connection', (socket) => {
+    console.log('socket connect successful');
 
-    io.on('connection', (socket) => {
-        console.log('socket connect successful');
-
-        socket.on('chat', function(data) {
-            io.sockets.emit('chat', data)
-        })
-    });
-
-    // sqlDatabase.query('INSERT INTO comments (comments) VALUES (?)', [comments], function(error, results, fields) {
-    sqlDatabase.query("INSERT INTO comments (user_id, comments) VALUES (?, ?)", [user, comments], function(error, results, fields) {
-        if (error) throw error;
-        console.log(results);
-        // return res.render('superhero-movies')
+    socket.on('chat', function(data) {
+        io.sockets.emit('chat', data)
     })
+});
+
+// sqlDatabase.query('INSERT INTO comments (comments) VALUES (?)', [comments], function(error, results, fields) {
+sqlDatabase.query("INSERT INTO comments (user_id, comments) VALUES (?, ?)", [user, comments], function(error, results, fields) {
+if (error) throw error;
+console.log(results);
+// return res.render('superhero-movies')
+})
 })
 router.get("/superhero-movies", authenticationMiddleware(), function(req, res) {
 

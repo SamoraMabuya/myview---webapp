@@ -29,7 +29,7 @@ $.ajax({
 
             var results = JSON.parse(results);
 
-            output.innerHTML += '<P><strong>' + handle.username + ': </strong>' + data.comments + '</p>';
+            output.innerHTML += '<P><strong>' + data.handle + ': </strong>' + data.comments + '</p>';
 
 
 

@@ -85,7 +85,7 @@ router.get("/superhero-movies", authenticationMiddleware(), function(req, res) {
 
     sqlDatabase.query("SELECT users.username, comments.comments, comments.date FROM users INNER JOIN comments ON users.user_id=comments.user_id",
         function(error, results, fields) {
-            res.render('superhero-movies', JSON.stringify(results));
+            res.render('superhero-movies');
 
 
             results.forEach((user) => {
