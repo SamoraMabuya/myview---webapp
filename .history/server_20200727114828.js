@@ -26,10 +26,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
 
-app.use(function(request, result, next) {
-    result.setHeader("Access-Control-Allow-Origin", "*");
-    next();
-})
+
 
 
 
@@ -104,15 +101,22 @@ io.on('connection', (socket) => {
         io.emit('new_message', message)
 
 
+        sqlDatabase.query('INSERT INTO comments (comments) VALUES (?, ?)', [message], {
+            function(error, results) {
+                if (error) throw error;
+                console.log(results);
+
+
+            }
+        })
     })
-})
 
-
-app.get("/get_messages", function(request, result) {
-    sqlDatabase.query("SELECT users.username, comments.comments, comments.date FROM users INNER JOIN comments ON users.user_id=comments.user_id",
-        function(error, results) {
-            result.end(JSON.stringify(results));
-        });
+    app.get("/get_messages", function(request, result) {
+        sqlDatabase.query("SELECT users.username, comments.comments, comments.date FROM users INNER JOIN comments ON users.user_id=comments.user_id",
+            function(error, results) {
+                result.end(JSON.stringify(results));
+            });
+    });
 });
 
 

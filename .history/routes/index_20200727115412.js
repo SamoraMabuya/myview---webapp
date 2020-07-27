@@ -59,10 +59,11 @@ router.post("/superhero", function(req, res) {
 
     sqlDatabase.query("INSERT INTO comments (user_id, comments) VALUES (?, ?)", [user, comments],
         function(error, results, fields) {
-            if (error) throw error;
             console.log(results);
             console.log(comments);
+            console.log('This is: ', comments)
             console.log(error)
+            if (error) throw error;
 
         });
 })

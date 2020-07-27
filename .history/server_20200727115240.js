@@ -26,10 +26,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
 
-app.use(function(request, result, next) {
-    result.setHeader("Access-Control-Allow-Origin", "*");
-    next();
-})
+
 
 
 
@@ -104,6 +101,13 @@ io.on('connection', (socket) => {
         io.emit('new_message', message)
 
 
+        sqlDatabase.query('INSERT INTO comments (comments) VALUES (?)', [message],
+            function(error, results) {
+                if (error) throw error;
+                console.log(results);
+
+
+            })
     })
 })
 

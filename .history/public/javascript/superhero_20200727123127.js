@@ -83,33 +83,32 @@ var newMessage = document.createElement("h6");
 
 
 submitbtn.addEventListener('click', function() {
-    fetch('http://localhost:5502' + '/get_messages')
-        .then(response => {
-            if (response.ok) {
-                console.log('success')
-                console.log(response);
-            } else {
-                console.log('failure')
-            }
-            return response.json();
-        })
-        .then(data => {
-            data.forEach(function(user) {
+            fetch('http://localhost:5502' + '/get_messages')
+                .then(response => {
+                    if (response.ok) {
+
+                        console.log('success')
+                    } else {
+                        console.log('failure')
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data)
+                        .catch(error => console.log('Error'))
 
 
+                    // var data = JSON.parse(response);
 
-                newName.textContent = `${user.username}`;
-                newDate.textContent = `${user.date}`;
-                newMessage.textContent = `${user.comments}`;
 
-                output.appendChild(newName);
-                output.appendChild(newDate);
-                output.appendChild(newMessage);
+                    newName.textContent = data;
+                    newDate.textContent = message;
+                    newMessage.textContent = message;
 
-                output.appendChild(newUser);
+                    output.appendChild(newName);
+                    output.appendChild(newDate);
+                    output.appendChild(newMessage);
 
-                console.log(data)
-                    .catch(error => console.log(error))
-            })
-        })
-})
+                    output.appendChild(newUser);
+
+                })

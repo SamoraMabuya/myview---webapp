@@ -87,29 +87,24 @@ submitbtn.addEventListener('click', function() {
         .then(response => {
             if (response.ok) {
                 console.log('success')
-                console.log(response);
             } else {
                 console.log('failure')
             }
             return response.json();
         })
         .then(data => {
-            data.forEach(function(user) {
+            newName.textContent = `{${data.username }}`;
+            newDate.textContent = { date: data.date };
+            newMessage.textContent = JSON.stringify(data.commentOutput);
 
+            output.appendChild(newName);
+            output.appendChild(newDate);
+            output.appendChild(newMessage);
 
+            output.appendChild(newUser);
 
-                newName.textContent = `${user.username}`;
-                newDate.textContent = `${user.date}`;
-                newMessage.textContent = `${user.comments}`;
-
-                output.appendChild(newName);
-                output.appendChild(newDate);
-                output.appendChild(newMessage);
-
-                output.appendChild(newUser);
-
-                console.log(data)
-                    .catch(error => console.log(error))
-            })
+            console.log(data)
+                .catch(error => console.log(error))
         })
+
 })

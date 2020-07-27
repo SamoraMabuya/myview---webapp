@@ -86,30 +86,36 @@ submitbtn.addEventListener('click', function() {
     fetch('http://localhost:5502' + '/get_messages')
         .then(response => {
             if (response.ok) {
+                // var data = JSON.parse(response);
+                // newName.textContent = { response: comments.username };
+                // newDate.textContent = { response: comments.username };
+                // newMessage.textContent = { response: comments.username };
+
+                // output.appendChild(newName);
+                // output.appendChild(newDate);
+                // output.appendChild(newMessage);
+
+                // output.appendChild(newUser);
+
                 console.log('success')
-                console.log(response);
             } else {
                 console.log('failure')
             }
             return response.json();
         })
         .then(data => {
-            data.forEach(function(user) {
+            newName.textContent = { username: data.username };
+            newDate.textContent = { date: data.date };
+            newMessage.textContent = { commentOutput: data.comments };
 
+            output.appendChild(newName);
+            output.appendChild(newDate);
+            output.appendChild(newMessage);
 
+            output.appendChild(newUser);
 
-                newName.textContent = `${user.username}`;
-                newDate.textContent = `${user.date}`;
-                newMessage.textContent = `${user.comments}`;
-
-                output.appendChild(newName);
-                output.appendChild(newDate);
-                output.appendChild(newMessage);
-
-                output.appendChild(newUser);
-
-                console.log(data)
-                    .catch(error => console.log(error))
-            })
+            console.log(data)
+                .catch(error => console.log('Error'))
         })
+
 })

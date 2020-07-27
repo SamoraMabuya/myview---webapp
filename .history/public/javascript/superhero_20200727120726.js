@@ -43,8 +43,25 @@ function sendMessage() {
 
 io.on("new_message", function(message) {
     console.log("Server says", message);
-})
 
+    var data = JSON.parse(response);
+
+
+    var newUser = document.createElement("div");
+    var newName = document.createElement("h5");
+    var newDate = document.createElement("h5");
+    var newMessage = document.createElement("h6");
+
+    newName.textContent = message;
+    newDate.textContent = data.message.username;
+    newMessage.textContent = message;
+
+    output.appendChild(newName);
+    output.appendChild(newDate);
+    output.appendChild(newMessage);
+
+    output.appendChild(newUser);
+})
 
 
 form.addEventListener('submit', function(e) {
@@ -76,10 +93,6 @@ form.addEventListener('submit', function(e) {
     });
 })
 
-var newUser = document.createElement("div");
-var newName = document.createElement("h5");
-var newDate = document.createElement("h5");
-var newMessage = document.createElement("h6");
 
 
 submitbtn.addEventListener('click', function() {
@@ -87,29 +100,13 @@ submitbtn.addEventListener('click', function() {
         .then(response => {
             if (response.ok) {
                 console.log('success')
-                console.log(response);
             } else {
                 console.log('failure')
             }
             return response.json();
         })
         .then(data => {
-            data.forEach(function(user) {
-
-
-
-                newName.textContent = `${user.username}`;
-                newDate.textContent = `${user.date}`;
-                newMessage.textContent = `${user.comments}`;
-
-                output.appendChild(newName);
-                output.appendChild(newDate);
-                output.appendChild(newMessage);
-
-                output.appendChild(newUser);
-
-                console.log(data)
-                    .catch(error => console.log(error))
-            })
+            console.log(data)
+                .catch(error => console.log('Error'))
         })
 })

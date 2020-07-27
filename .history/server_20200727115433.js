@@ -26,10 +26,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
 
-app.use(function(request, result, next) {
-    result.setHeader("Access-Control-Allow-Origin", "*");
-    next();
-})
+
 
 
 

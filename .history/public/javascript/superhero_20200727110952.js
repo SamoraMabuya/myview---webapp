@@ -1,7 +1,6 @@
 // const { response } = require("express");
 // const uniqid = require('uniq');
 
-
 // const { json } = require("express");
 
 // const { body } = require("express-validator/check");
@@ -43,8 +42,22 @@ function sendMessage() {
 
 io.on("new_message", function(message) {
     console.log("Server says", message);
-})
 
+    var newUser = document.createElement("div");
+    var newName = document.createElement("h5");
+    var newDate = document.createElement("h5");
+    var newMessage = document.createElement("h6");
+
+    newName.textContent = comments.value;
+    newDate.textContent = comments.value;
+    newMessage.textContent = comments.value;
+
+    output.appendChild(newName);
+    output.appendChild(newDate);
+    output.appendChild(newMessage);
+
+    output.appendChild(newUser);
+})
 
 
 form.addEventListener('submit', function(e) {
@@ -76,40 +89,24 @@ form.addEventListener('submit', function(e) {
     });
 })
 
-var newUser = document.createElement("div");
-var newName = document.createElement("h5");
-var newDate = document.createElement("h5");
-var newMessage = document.createElement("h6");
 
 
 submitbtn.addEventListener('click', function() {
+    sendMessage();
+
     fetch('http://localhost:5502' + '/get_messages')
         .then(response => {
             if (response.ok) {
                 console.log('success')
-                console.log(response);
             } else {
                 console.log('failure')
             }
             return response.json();
         })
-        .then(data => {
-            data.forEach(function(user) {
+        .then(data =>
+            console.log(data))
+        .catch(error => console.log('Error'))
 
 
 
-                newName.textContent = `${user.username}`;
-                newDate.textContent = `${user.date}`;
-                newMessage.textContent = `${user.comments}`;
-
-                output.appendChild(newName);
-                output.appendChild(newDate);
-                output.appendChild(newMessage);
-
-                output.appendChild(newUser);
-
-                console.log(data)
-                    .catch(error => console.log(error))
-            })
-        })
 })

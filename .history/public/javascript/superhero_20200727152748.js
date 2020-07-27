@@ -94,13 +94,14 @@ submitbtn.addEventListener('click', function() {
             return response.json();
         })
         .then(data => {
+
             data.forEach(function(user) {
 
-
-
-                newName.textContent = `${user.username}`;
+                newName.textContent = `${user.usernam}`;
                 newDate.textContent = `${user.date}`;
                 newMessage.textContent = `${user.comments}`;
+
+
 
                 output.appendChild(newName);
                 output.appendChild(newDate);

@@ -52,20 +52,21 @@ router.get("/logout", async function(req, res) {
 
 });
 
-router.post("/superhero", function(req, res) {
+// router.post("/superhero", function(req, res) {
 
-    const user = req.user;
-    const comments = req.body.comments;
+//     const user = req.user;
+//     const comments = req.body.comments;
 
-    sqlDatabase.query("INSERT INTO comments (user_id, comments) VALUES (?, ?)", [user, comments],
-        function(error, results, fields) {
-            if (error) throw error;
-            console.log(results);
-            console.log(comments);
-            console.log(error)
+//     sqlDatabase.query("INSERT INTO comments (user_id, comments) VALUES (?, ?)", [user, comments],
+//         function(error, results, fields) {
+//             console.log(results);
+//             console.log(comments);
+//             console.log('This is: ', comments)
+//             console.log(error)
+//             if (error) throw error;
 
-        });
-})
+//         });
+// })
 
 
 router.get("/superhero", authenticationMiddleware(), function(req, res, err) {

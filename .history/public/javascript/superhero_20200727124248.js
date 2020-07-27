@@ -86,21 +86,10 @@ submitbtn.addEventListener('click', function() {
     fetch('http://localhost:5502' + '/get_messages')
         .then(response => {
             if (response.ok) {
-                console.log('success')
-                console.log(response);
-            } else {
-                console.log('failure')
-            }
-            return response.json();
-        })
-        .then(data => {
-            data.forEach(function(user) {
-
-
-
-                newName.textContent = `${user.username}`;
-                newDate.textContent = `${user.date}`;
-                newMessage.textContent = `${user.comments}`;
+                // var data = JSON.parse(response);
+                newName.textContent = { response: comments.username };
+                newDate.textContent = { response: comments.username };
+                newMessage.textContent = { response: comments.username };
 
                 output.appendChild(newName);
                 output.appendChild(newDate);
@@ -108,8 +97,25 @@ submitbtn.addEventListener('click', function() {
 
                 output.appendChild(newUser);
 
-                console.log(data)
-                    .catch(error => console.log(error))
-            })
+                console.log('success')
+            } else {
+                console.log('failure')
+            }
+            return response.json();
         })
+        .then(data => {
+            newName.textContent = { response: comments.username };
+            newDate.textContent = { response: comments.username };
+            newMessage.textContent = { data: comments.username };
+
+            output.appendChild(newName);
+            output.appendChild(newDate);
+            output.appendChild(newMessage);
+
+            output.appendChild(newUser);
+
+            console.log(data)
+                .catch(error => console.log('Error'))
+        })
+
 })
