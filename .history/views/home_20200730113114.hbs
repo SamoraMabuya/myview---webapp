@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MyView: Welcome Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.all.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.all.css">
+</head>
+
+<body>
+    <div class="opinsearchtab">
+
+        {{#if isAuthenticated}}
+        <div class="logoutbutton">
+            <a href="/index/logout"><button class="logoutbtn">Log Out</button></a>
+        </div>
+        {{else}}
+        <div class="buttons">
+            <ul>
+                <li><a href="/login"><button class="loginbutton" id="loginbutton">Log In</button></a></li>
+                <li><a href="/register"><button class="joinbutton" id="joinbutton">Join</button></a></li>
+            </ul>
+        </div>
+        {{/if}}
+
+        <form id="searchbox_container">
+            <input class="searchbox" type="text" placeholder="What are you looking for?">
+        </form>
+    </div>
+
+    <div id="topics">
+        <div class="contain">
+            <div class="ontop">
+                <a href="#">
+                    <img src="/Pictures/movies.jpg">
+                </a>
+            </div>
+            <div class="movies"><a href="#">movies</a> </div>
+        </div>
+
+        <div class="contain">
+            <div class="ontop">
+                <a href="#">
+                    <img src="/Pictures/series.jpg">
+                </a>
+            </div>
+            <div class="series"><a href="#">series</a> </div>
+        </div>
+
+        <div class="contain">
+            <div class="ontop">
+                <a href="#">
+                    <img src="/Pictures/comics.jpg">
+                </a>
+            </div>
+            <div class="comics"><a href="#">comics</a> </div>
+        </div>
+
+        <div class="contain">
+            <div class="ontop">
+                <a href="#">
+                    <img src="/Pictures/anime.jpg">
+                </a>
+            </div>
+            <div class="anime"><a href="#">anime</a> </div>
+        </div>
+
+        <div class="contain">
+            <div class="ontop">
+                <a href="#">
+                    <img src="/Pictures/manga.jpg">
+                </a>
+            </div>
+            <div class="manga"><a href="#">manga</a> </div>
+        </div>
+    </div>
+
+    <div class="movieTypes" id="movieTypes">
+        <div class="imgContainer"></div>
+        <div class="SelectedOverlay"></div>
+        <img src="/Pictures/movies.jpg" alt="">
+    </div>
+
+    <div class="rooms">
+        <div class="ImgCircle">
+            <img src="/Pictures/agnieszka-kowalczyk-c0VRNWVEjOA-unsplash.jpg" alt="">
+        </div>
+        <div class="ImgCircle">
+            <img src="/Pictures/comics.jpg" alt="">
+        </div>
+        <div class="ImgCircle">
+            <img src="/Pictures/comics.jpg" alt="">
+        </div>
+        <div class="ImgCircle">
+            <img src="/Pictures/comics.jpg" alt="">
+        </div>
+        <div class="ImgCircle">
+            <img src="/Pictures/comics.jpg" alt="">
+        </div>
+        <div class="ImgCircle">
+            <img src="/Pictures/comics.jpg" alt="">
+        </div>
+        <div class="ImgCircle">
+            <img src="/Pictures/comics.jpg" alt="">
+        </div>
+        <div class="ImgCircle">
+            <img src="/Pictures/comics.jpg" alt="">
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="/reload/reload.js"></script>
+</body>
