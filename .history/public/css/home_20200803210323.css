@@ -168,7 +168,8 @@
         border-style: none;
         padding-top: 25px;
         bottom: 0;
-        position: relative;
+        position: absolute;
+        top: auto;
     }
     
     .inputBox .inputMessage {
@@ -184,7 +185,6 @@
         resize: none;
         bottom: 0;
         position: absolute;
-        max-height: 150px;
     }
     
     .inputBox hr {

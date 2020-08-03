@@ -167,24 +167,9 @@
         border-width: 0.5px;
         border-style: none;
         padding-top: 25px;
-        bottom: 0;
-        position: relative;
-    }
-    
-    .inputBox .inputMessage {
-        left: -50%;
-        right: -50%;
-        top: auto;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 60px;
-        width: 650px;
-        /* border-radius: 5px; */
-        padding: 10px 0px 0px 10px;
-        resize: none;
-        bottom: 0;
+        bottom: 0px;
         position: absolute;
-        max-height: 150px;
+        margin-top: 300px;
     }
     
     .inputBox hr {
@@ -199,10 +184,21 @@
         text-transform: capitalize;
     }
     
+    .inputBox .inputMessage {
+        left: 50%;
+        right: -50%;
+        top: auto;
+        width: 500px;
+        /* border-radius: 5px; */
+        padding: 10px 0px 0px 10px;
+        margin: 0 auto;
+        resize: none;
+        bottom: 0;
+        position: absolute;
+    }
+    
     .inputBox-Buttons {
         width: 100%;
-        position: absolute;
-        top: 80px;
     }
     
     .inputBox-Buttons span {

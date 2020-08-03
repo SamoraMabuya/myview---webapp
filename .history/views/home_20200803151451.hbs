@@ -15,13 +15,12 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.all.css">
     <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital@1&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
 
 
-    {{!-- {{#if isAuthenticated}}
+        {{!-- {{#if isAuthenticated}}
         <div class="logoutbutton">
             <a href="/index/logout"><button class="logoutbtn">Log Out</button></a>
         </div>
@@ -98,13 +97,13 @@
             <p class="comments">This is where the comments will output</p>
         </div>
     </div>
-
+    
 
     {{!-- write message --}}
 
 
     <div class="inputBox">
-        <textarea class="inputMessage" id="inputMessage" placeholder="Write messages..."></textarea>
+        <textarea class="inputMessage" contenteditable="true" placeholder="Write messages..."></textarea>
 
         <div class="inputBox-Buttons">
             <button type="submit" class="PostButton"><span>post</span>
@@ -175,10 +174,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="/javascript/home.js"></script>
     <script src="/reload/reload.js"></script>
-
-
 </body>
 
 </html>

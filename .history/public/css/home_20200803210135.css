@@ -184,7 +184,6 @@
         resize: none;
         bottom: 0;
         position: absolute;
-        max-height: 150px;
     }
     
     .inputBox hr {

@@ -15,13 +15,13 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.all.css">
     <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital@1&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
 
+    {{!-- <div class="opinsearchtab">
 
-    {{!-- {{#if isAuthenticated}}
+        {{#if isAuthenticated}}
         <div class="logoutbutton">
             <a href="/index/logout"><button class="logoutbtn">Log Out</button></a>
         </div>
@@ -32,9 +32,64 @@
                 <li><a href="/register"><button class="joinbutton" id="joinbutton">Join</button></a></li>
             </ul>
         </div>
-        {{/if}} --}}
+        {{/if}}
+
+        <form id="searchbox_container">
+            <input class="searchbox" type="text" placeholder="What are you looking for?">
+        </form>
+    </div> --}}
 
 
+    {{!-- <div id="topics">
+        <div class="contain">
+            <div class="ontop">
+                <a href="#">
+                    <img src="/Pictures/movies.jpg">
+                </a>
+            </div>
+            <div class="movies"><a href="#">movies</a> </div>
+        </div>
+
+        <div class="contain">
+            <div class="ontop">
+                <a href="#">
+                    <img src="/Pictures/series.jpg">
+                </a>
+            </div>
+            <div class="series"><a href="#">series</a> </div>
+        </div>
+
+        <div class="contain">
+            <div class="ontop">
+                <a href="#">
+                    <img src="/Pictures/comics.jpg">
+                </a>
+            </div>
+            <div class="comics"><a href="#">comics</a> </div>
+        </div>
+
+        <div class="contain">
+            <div class="ontop">
+                <a href="#">
+                    <img src="/Pictures/anime.jpg">
+                </a>
+            </div>
+            <div class="anime"><a href="#">anime</a> </div>
+        </div>
+
+        <div class="contain">
+            <div class="ontop">
+                <a href="#">
+                    <img src="/Pictures/manga.jpg">
+                </a>
+            </div>
+            <div class="manga"><a href="#">manga</a> </div>
+        </div>
+    </div> --}}
+
+    {{!-- <div class="commentArea">
+
+    </div> --}}
 
 
 
@@ -89,22 +144,19 @@
 
     {{!-- App Interfaces --}}
 
-    {{!-- comments sections --}}
-
     <div class="commentsWindow">
         <div class="output">
-            <h6 class="username">The Spider</h6>
+            <h6 class="username"> The Spider</h6>
             <h6 class="date">2 hours ago</h6>
             <p class="comments">This is where the comments will output</p>
         </div>
+
+
     </div>
 
 
-    {{!-- write message --}}
-
-
     <div class="inputBox">
-        <textarea class="inputMessage" id="inputMessage" placeholder="Write messages..."></textarea>
+        <textarea class="inputMessage" placeholder="Write messages..."></textarea>
 
         <div class="inputBox-Buttons">
             <button type="submit" class="PostButton"><span>post</span>
@@ -115,11 +167,13 @@
 
             <button type="submit" class="AddButton"><span>upload</span>
                 <i class="fas fa-cloud-upload-alt" style="margin: 0px 0px 0px 5px;"></i> </button>
+
+
         </div>
     </div>
 
 
-    {{!-- header section --}}
+
     <div class="header">
         <i class="fa fa-home" aria-hidden="true"></i><span>home</span>
         <i class="fa fa-book" aria-hidden="true"></i><span>about</span>
@@ -175,10 +229,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="/javascript/home.js"></script>
     <script src="/reload/reload.js"></script>
-
-
 </body>
 
 </html>
