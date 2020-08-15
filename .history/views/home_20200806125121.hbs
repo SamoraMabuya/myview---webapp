@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MyView: Welcome Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.all.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital@1&display=swap" rel="stylesheet">
+
+</head>
+
+<body onload="loadcomments();">
+
+
+    {{!-- {{#if isAuthenticated}}
+        <div class="logoutbutton">
+            <a href="/index/logout"><button class="logoutbtn">Log Out</button></a>
+        </div>
+        {{else}}
+        <div class="buttons">
+            <ul>
+                <li><a href="/login"><button class="loginbutton" id="loginbutton">Log In</button></a></li>
+                <li><a href="/register"><button class="joinbutton" id="joinbutton">Join</button></a></li>
+            </ul>
+        </div>
+        {{/if}} --}}
+
+
+
+
+
+
+    <div class="movieTypes" id="movieTypes">
+        <div class="imgContainer"></div>
+        <div class="SelectedOverlay"></div>
+        <img src="/Pictures/movies.jpg" alt="">
+    </div>
+
+
+    <div class="rooms">
+
+        <span> Enter a chatroom </span>
+
+        <div class="columns">
+            <div class="ImgCircle">
+                <img src="/Pictures/fantasy_sci_fi.webp" alt="">
+            </div>
+
+            <div class="ImgCircle">
+                <img src="/Pictures/asianmovies.jpg" alt="" style="object-position: -75px;">
+            </div>
+            <div class="ImgCircle">
+                <img src="/Pictures/michael.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="ImgCircle">
+                <img src="/Pictures/latestmovies.jpg" alt="">
+            </div>
+            <div class="ImgCircle">
+                <img src="/Pictures/action.jpg" alt="">
+            </div>
+            <div class="ImgCircle">
+                <img src="/Pictures/animated.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="ImgCircle">
+                <img src="/Pictures/titanic-embarking.jpg" alt="">
+            </div>
+            <div class="ImgCircle">
+                <img src="/Pictures/comicbook.jpg" alt="" style="margin-bottom: 50px;">
+            </div>
+        </div>
+    </div>
+
+
+
+    {{!-- App Interfaces --}}
+
+    {{!-- comments sections --}}
+
+    <div class="commentsWindow">
+        <div class="output" id="output">
+            <h6 class="username">Spider Gone</h6>
+            <h6 class="date"> 40 min ago
+                <i class="fas fa-ellipsis-v icon"></i>
+                <div class="options">
+                    <button class="edit"> Edit </button>
+                    <button class="delete"> Delete </button>
+                </div>
+            </h6>
+            <p class="comments">Just saying what I think.</p>
+        </div>
+    </div>
+
+    {{!-- write message --}}
+
+
+    <form class="inputBox" id="inputBox">
+
+        <textarea class="inputMessage" id="inputMessage" name="comments" placeholder="Write messages..."></textarea>
+        <div class="inputBox-Buttons">
+            <button type="submit" class="PostButton" id="PostButton" onclick="clear();"><span>post</span>
+                <i class="fas fa-comment-dots" style="margin: 0px 0px 0px 5px;"></i> </button>
+
+            <button type="submit" class="DiscardButton"><span>discard</span>
+                <i class="fas fa-comment-slash" style="margin: 7px 0px 0px 5px;"></i> </button>
+
+            <button type="submit" class="AddButton"><span>upload</span>
+                <i class="fas fa-cloud-upload-alt" style="margin: 0px 0px 0px 5px;"></i> </button>
+        </div>
+    </form>
+
+
+
+
+    {{!-- header section --}}
+    <div class="header">
+        <i class="fa fa-home" aria-hidden="true"></i><span>home</span>
+        <i class="fa fa-book" aria-hidden="true"></i><span>about</span>
+        <i class="fa fa-hashtag" aria-hidden="true"></i><span>rules</span>
+        <i class="fa fa-envelope" aria-hidden="true"></i><span>Contact</span>
+    </div>
+
+    <div class="DomainTab">
+        <span> Worlds </span>
+
+        <div class="Domains">
+            <img src="/Pictures/movies.jpg" alt="">
+            <span>movies</span>
+        </div>
+
+        <div class="Domains">
+            <img src="/Pictures/Series.jpg" alt="">
+            <span>series</span>
+        </div>
+
+        <div class="Domains">
+            <img src="/Pictures/comics.jpg" alt="">
+            <span>comics</span>
+        </div>
+
+        <div class="Domains">
+            <img src="/Pictures/anime.jpg" alt="">
+            <span>anime</span>
+        </div>
+
+        <div class="Domains">
+            <img src="/Pictures/manga.jpg" alt="">
+            <span>manga</span>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    {{!-- <div class="messageContainer"> --}}
+    {{!-- <textarea class="messageInput"></textarea> --}}
+    {{!-- <button id="submit" class="btn btn-primary" type="submit">Button</button> --}}
+
+    {{!-- </div> --}}
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="/javascript/home.js"></script>
+    <script src="/reload/reload.js"></script>
+
+
+</body>
+
+</html>
