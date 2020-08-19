@@ -7,6 +7,7 @@ var output = document.querySelector('.output');
 const form = document.querySelector('.inputBox');
 const postbtn = document.querySelector('.PostButton');
 
+const save = document.querySelector('#Save');
 
 
 clear();
@@ -194,26 +195,25 @@ function outputEvents() {
             })
         }
         if (e.target.id === "edit") {
-            update(e.target.dataset.id)
-            editBox();
             getText(e);
+            save();
         }
     })
+}
 
-    const save = document.querySelector('#Save');
+function save() {
 
+    save.onclick = function() {
+        id = e.target.dataset.id;
 
-
-    function update(id) {
-        document.querySelector("#updateMessage").dataset.id = id;
-        document.querySelector("#Save").dataset.id = id;
-
-    }
-
-    save.addEventListener('click', function() {
-        alert('is appended');
+        document.querySelector('#Save').dataset.id = id;
+        console.log(document.querySelector('#Save').dataset.id);
+        console.log('saved');
         const updateMessage = document.querySelector('#updateMessage');
-        fetch('http://localhost:5502/update', {
+        console.log(updateMessage);
+        console.log(id)
+
+        fetch('http://localhost:5502/update/', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -226,9 +226,10 @@ function outputEvents() {
             }).then(response => response.json())
             .then(function(data) {
                 console.log(data);
-            })
 
-    })
+            })
+    }
+
 
 
     function getText(e) {
@@ -239,6 +240,7 @@ function outputEvents() {
             console.log(parent);
             console.log(messageContent);
             MessageBox.value = messageContent;
+            editBox();
 
         }
     }
@@ -251,6 +253,7 @@ function outputEvents() {
         discard.onclick = function() {
             updateComment.hidden = true;
             alert('discard');
+            console.log(data);
         }
     }
 }

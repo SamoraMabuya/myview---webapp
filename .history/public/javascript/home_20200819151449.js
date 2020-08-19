@@ -212,17 +212,17 @@ function outputEvents() {
 
     save.addEventListener('click', function() {
         alert('is appended');
-        const updateMessage = document.querySelector('#updateMessage');
+        const updateMessage = document.querySelector('.updateMessage');
         fetch('http://localhost:5502/update', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({
+                body: console.log(JSON.stringify({
                     id: updateMessage.dataset.id,
                     comments: updateMessage.value
-                })
+                }))
             }).then(response => response.json())
             .then(function(data) {
                 console.log(data);

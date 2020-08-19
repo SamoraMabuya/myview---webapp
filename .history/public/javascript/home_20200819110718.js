@@ -7,6 +7,7 @@ var output = document.querySelector('.output');
 const form = document.querySelector('.inputBox');
 const postbtn = document.querySelector('.PostButton');
 
+const save = document.querySelector('#Save');
 
 
 clear();
@@ -180,77 +181,72 @@ function outputEvents() {
 
 
     output.addEventListener('click', function(e) {
-        const id = e.target.dataset.id;
-        if (e.target.id === "delete") {
-            fetch('http://localhost:5502/delete/' + id, {
-                method: 'DELETE'
-            }).then(function(response) {
-                response.json()
-                console.log(response)
-            }).then(function(data) {
-                console.log(data);
-            }).catch(function(error) {
-                console.log(error);
-            })
-        }
-        if (e.target.id === "edit") {
-            update(e.target.dataset.id)
-            editBox();
-            getText(e);
-        }
-    })
-
-    const save = document.querySelector('#Save');
-
-
-
-    function update(id) {
-        document.querySelector("#updateMessage").dataset.id = id;
-        document.querySelector("#Save").dataset.id = id;
-
-    }
-
-    save.addEventListener('click', function() {
-        alert('is appended');
-        const updateMessage = document.querySelector('#updateMessage');
-        fetch('http://localhost:5502/update', {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    id: updateMessage.dataset.id,
-                    comments: updateMessage.value
+            const id = e.target.dataset.id;
+            if (e.target.id === "delete") {
+                fetch('http://localhost:5502/delete/' + id, {
+                    method: 'DELETE'
+                }).then(function(response) {
+                    response.json()
+                    console.log(response)
+                }).then(function(data) {
+                    console.log(data);
+                }).catch(function(error) {
+                    console.log(error);
                 })
-            }).then(response => response.json())
-            .then(function(data) {
-                console.log(data);
-            })
-
+            }
+            if (e.target.id === "edit") {
+                update(e.target.dataset.id)
+                editBox();
+                getText(e);
+            }
+        }
     })
 
 
-    function getText(e) {
-        var MessageBox = document.querySelector('#updateMessage');
-        const parent = e.target.parentNode.parentNode.parentNode;
-        if (e.target.id == 'edit') {
-            let messageContent = parent.querySelector('.comments').textContent;
-            console.log(parent);
-            console.log(messageContent);
-            MessageBox.value = messageContent;
 
-        }
+function update(id) {
+    document.querySelector("#Save").dataset.id = id;
+
+}
+save.onclick = function() {
+    const updateMessage = document.querySelector('.updateMessage');
+    fetch('http://localhost:5502/update', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                id: updateMessage.dataset.id,
+                comments: updateMessage.value
+            })
+        }).then(response => response.json())
+        .then(function(data) {
+            console.log(data);
+        })
+}
+
+function getText(e) {
+    var MessageBox = document.querySelector('#updateMessage');
+    const parent = e.target.parentNode.parentNode.parentNode;
+    if (e.target.id == 'edit') {
+        let messageContent = parent.querySelector('.comments').textContent;
+        console.log(parent);
+        console.log(messageContent);
+        MessageBox.value = messageContent;
+
     }
+}
 
 
-    function editBox() {
-        const updateComment = document.querySelector('#updateBox');
-        const discard = document.querySelector('#Discard');
-        updateComment.hidden = false;
-        discard.onclick = function() {
-            updateComment.hidden = true;
-            alert('discard');
-        }
+
+function editBox() {
+    const updateComment = document.querySelector('#updateBox');
+    const discard = document.querySelector('#Discard');
+    updateComment.hidden = false;
+    discard.onclick = function() {
+        updateComment.hidden = true;
+        alert('discard');
+        console.log(data);
     }
 }

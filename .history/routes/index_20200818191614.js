@@ -10,7 +10,6 @@ const sqlDatabase = require('../db.js');
 const LocalStrategy = require('passport-local').Strategy;
 
 
-
 var flash = require('express-flash-messages');
 const { session } = require('passport');
 const { json, response, request } = require('express');
@@ -97,16 +96,14 @@ router.delete("/delete/:id", function(req, res) {
 })
 
 router.patch('/update', function(req, res) {
-    const { id } = req.body;
-    const { comments } = req.body;
-    console.log(comments, id)
-    sqlDatabase.query('UPDATE comments SET comments = ? WHERE id = ?', [comments, id],
+    const id = req.body;
+    const comments = req.body.comments;
+
+    sqlDatabase.query('UPDATE comments SET comments = ? WHERE id = ?', [id, comments],
         function(error, results) {
             console.log(results);
             console.log(error)
             console.log('updated')
-            console.log(comments, id)
-
         })
 })
 

@@ -1,4 +1,3 @@
-const express = require('express');
 const router = express.Router();
 const expressValidator = require('express-validator');
 // const { body, validationResult } = require('express-validator');
@@ -8,7 +7,6 @@ const saltRounds = 10;
 const passport = require('passport');
 const sqlDatabase = require('../db.js');
 const LocalStrategy = require('passport-local').Strategy;
-
 
 
 var flash = require('express-flash-messages');
@@ -97,16 +95,12 @@ router.delete("/delete/:id", function(req, res) {
 })
 
 router.patch('/update', function(req, res) {
-    const { id } = req.body;
-    const { comments } = req.body;
-    console.log(comments, id)
-    sqlDatabase.query('UPDATE comments SET comments = ? WHERE id = ?', [comments, id],
+    const { id, comments } = request.body;
+    sqlDatabase.query('UPDATE comments SET comments = ? WHERE id = ?', [id, comments],
         function(error, results) {
             console.log(results);
             console.log(error)
             console.log('updated')
-            console.log(comments, id)
-
         })
 })
 

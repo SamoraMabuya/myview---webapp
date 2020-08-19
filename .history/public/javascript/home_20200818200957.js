@@ -7,10 +7,12 @@ var output = document.querySelector('.output');
 const form = document.querySelector('.inputBox');
 const postbtn = document.querySelector('.PostButton');
 
+const save = document.querySelector('#Save');
 
 
 clear();
 outputEvents();
+MessageUpdate();
 messageArea.addEventListener('keyup', function(e) {
     // e.preventDefault(e);
     if (e.keyCode === 13 &&
@@ -194,63 +196,61 @@ function outputEvents() {
             })
         }
         if (e.target.id === "edit") {
-            update(e.target.dataset.id)
-            editBox();
+            MessageUpdate(e.target.dataset.id);
             getText(e);
         }
     })
+}
 
-    const save = document.querySelector('#Save');
-
-
-
-    function update(id) {
-        document.querySelector("#updateMessage").dataset.id = id;
-        document.querySelector("#Save").dataset.id = id;
+function getText(e) {
+    var MessageBox = document.querySelector('#updateMessage');
+    const parent = e.target.parentNode.parentNode.parentNode;
+    if (e.target.id == 'edit') {
+        let messageContent = parent.querySelector('.comments').textContent;
+        console.log(parent);
+        console.log(messageContent);
+        MessageBox.value = messageContent;
+        editBox();
 
     }
+}
 
-    save.addEventListener('click', function() {
-        alert('is appended');
+
+function editBox() {
+    const updateComment = document.querySelector('#updateBox');
+    const discard = document.querySelector('#Discard');
+    updateComment.hidden = false;
+    discard.onclick = function() {
+        updateComment.hidden = true;
+        alert('discard');
+
+    }
+}
+
+function MessageUpdate(id) {
+    // document.querySelector('#Save').dataset.id = id;
+    save.onclick = function() {
+        alert('saved');
+
         const updateMessage = document.querySelector('#updateMessage');
+        console.log(updateMessage);
+        console.log(id)
+
+
         fetch('http://localhost:5502/update', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
+
                 },
-                body: JSON.stringify({
-                    id: updateMessage.dataset.id,
+                body: console.log(JSON.stringify({
+                    id: updateMessage.target.dataset.id,
                     comments: updateMessage.value
-                })
+                }))
             }).then(response => response.json())
             .then(function(data) {
                 console.log(data);
             })
-
-    })
-
-
-    function getText(e) {
-        var MessageBox = document.querySelector('#updateMessage');
-        const parent = e.target.parentNode.parentNode.parentNode;
-        if (e.target.id == 'edit') {
-            let messageContent = parent.querySelector('.comments').textContent;
-            console.log(parent);
-            console.log(messageContent);
-            MessageBox.value = messageContent;
-
-        }
-    }
-
-
-    function editBox() {
-        const updateComment = document.querySelector('#updateBox');
-        const discard = document.querySelector('#Discard');
-        updateComment.hidden = false;
-        discard.onclick = function() {
-            updateComment.hidden = true;
-            alert('discard');
-        }
     }
 }

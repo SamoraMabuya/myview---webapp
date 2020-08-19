@@ -219,10 +219,10 @@ function outputEvents() {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({
+                body: console.log(JSON.stringify({
                     id: updateMessage.dataset.id,
                     comments: updateMessage.value
-                })
+                }))
             }).then(response => response.json())
             .then(function(data) {
                 console.log(data);

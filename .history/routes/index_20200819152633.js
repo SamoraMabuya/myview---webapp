@@ -8,6 +8,7 @@ const saltRounds = 10;
 const passport = require('passport');
 const sqlDatabase = require('../db.js');
 const LocalStrategy = require('passport-local').Strategy;
+const bodyParser = require('body-parser')
 
 
 
@@ -96,17 +97,14 @@ router.delete("/delete/:id", function(req, res) {
         });
 })
 
-router.patch('/update', function(req, res) {
-    const { id } = req.body;
-    const { comments } = req.body;
+router.patch('/update', bodyParser.json(), function(req, res) {
+    const { comments, id } = req.body;
     console.log(comments, id)
     sqlDatabase.query('UPDATE comments SET comments = ? WHERE id = ?', [comments, id],
         function(error, results) {
             console.log(results);
             console.log(error)
             console.log('updated')
-            console.log(comments, id)
-
         })
 })
 

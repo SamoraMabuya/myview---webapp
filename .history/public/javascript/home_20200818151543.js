@@ -126,7 +126,9 @@ function loadcomments() {
                     NewIconOptions.onmousemove = () => NewIconOptions.classList.add('is-visible');
                     NewIconOptions.onmouseleave = () => NewIconOptions.classList.remove('is-visible');
 
-
+                    newEdit.onclick = function() {
+                        editBox();
+                    }
                     console.log(data);
 
 
@@ -180,6 +182,7 @@ function outputEvents() {
 
 
     output.addEventListener('click', function(e) {
+        editMessage(e);
         const id = e.target.dataset.id;
         if (e.target.id === "delete") {
             fetch('http://localhost:5502/delete/' + id, {
@@ -193,31 +196,48 @@ function outputEvents() {
                 console.log(error);
             })
         }
-        if (e.target.id === "edit") {
-            update(e.target.dataset.id)
-            editBox();
-            getText(e);
+        if (e.target.className === "savebtn") {
+            // MessageUpdate(e.target.dataset.id);
+            console.log('saved')
         }
     })
+}
 
-    const save = document.querySelector('#Save');
+function editBox() {
+    const updateComment = document.querySelector('#updateBox');
+    const discard = document.querySelector('#Discard');
+    updateComment.hidden = false;
 
 
+    discard.onclick = function() {
+        updateComment.hidden = true;
+        alert('discard');
+    }
+}
 
-    function update(id) {
-        document.querySelector("#updateMessage").dataset.id = id;
-        document.querySelector("#Save").dataset.id = id;
+function editMessage(e) {
+    var MessageBox = document.querySelector('#updateMessage');
+    const parent = e.target.parentNode.parentNode.parentNode;
+    if (e.target.id == 'edit') {
+        let messageContent = parent.querySelector('.comments').textContent;
+        console.log(parent);
+        console.log(messageContent);
+        MessageBox.value = messageContent;
 
     }
+}
 
-    save.addEventListener('click', function() {
-        alert('is appended');
+
+function MessageUpdate() {
+
+    const save = document.querySelector('#Save');
+    save.onclick.onclick = function() {
         const updateMessage = document.querySelector('#updateMessage');
+
         fetch('http://localhost:5502/update', {
                 method: 'PATCH',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     id: updateMessage.dataset.id,
@@ -227,30 +247,5 @@ function outputEvents() {
             .then(function(data) {
                 console.log(data);
             })
-
-    })
-
-
-    function getText(e) {
-        var MessageBox = document.querySelector('#updateMessage');
-        const parent = e.target.parentNode.parentNode.parentNode;
-        if (e.target.id == 'edit') {
-            let messageContent = parent.querySelector('.comments').textContent;
-            console.log(parent);
-            console.log(messageContent);
-            MessageBox.value = messageContent;
-
-        }
-    }
-
-
-    function editBox() {
-        const updateComment = document.querySelector('#updateBox');
-        const discard = document.querySelector('#Discard');
-        updateComment.hidden = false;
-        discard.onclick = function() {
-            updateComment.hidden = true;
-            alert('discard');
-        }
     }
 }

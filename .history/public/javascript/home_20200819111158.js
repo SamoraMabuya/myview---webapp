@@ -7,6 +7,7 @@ var output = document.querySelector('.output');
 const form = document.querySelector('.inputBox');
 const postbtn = document.querySelector('.PostButton');
 
+const save = document.querySelector('#Save');
 
 
 clear();
@@ -200,36 +201,32 @@ function outputEvents() {
         }
     })
 
-    const save = document.querySelector('#Save');
-
 
 
     function update(id) {
-        document.querySelector("#updateMessage").dataset.id = id;
         document.querySelector("#Save").dataset.id = id;
 
     }
 
-    save.addEventListener('click', function() {
-        alert('is appended');
-        const updateMessage = document.querySelector('#updateMessage');
+    save.onclick = function() {
+        console.log('is appended');
+        const updateMessage = document.querySelector('.updateMessage');
         fetch('http://localhost:5502/update', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({
+                body: console.log(JSON.stringify({
                     id: updateMessage.dataset.id,
                     comments: updateMessage.value
-                })
+                }))
             }).then(response => response.json())
             .then(function(data) {
                 console.log(data);
             })
 
-    })
-
+    }
 
     function getText(e) {
         var MessageBox = document.querySelector('#updateMessage');
@@ -244,6 +241,7 @@ function outputEvents() {
     }
 
 
+
     function editBox() {
         const updateComment = document.querySelector('#updateBox');
         const discard = document.querySelector('#Discard');
@@ -253,4 +251,3 @@ function outputEvents() {
             alert('discard');
         }
     }
-}

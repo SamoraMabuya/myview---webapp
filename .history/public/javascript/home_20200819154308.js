@@ -205,7 +205,7 @@ function outputEvents() {
 
 
     function update(id) {
-        document.querySelector("#updateMessage").dataset.id = id;
+        document.querySelector("#updateMessage");
         document.querySelector("#Save").dataset.id = id;
 
     }

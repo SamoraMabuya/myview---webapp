@@ -8,6 +8,7 @@ const saltRounds = 10;
 const passport = require('passport');
 const sqlDatabase = require('../db.js');
 const LocalStrategy = require('passport-local').Strategy;
+const bodyParser = require('body-parser')
 
 
 
@@ -96,7 +97,7 @@ router.delete("/delete/:id", function(req, res) {
         });
 })
 
-router.patch('/update', function(req, res) {
+router.patch('/update', bodyParser.json(), function(req, res) {
     const { id } = req.body;
     const { comments } = req.body;
     console.log(comments, id)
